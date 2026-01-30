@@ -983,7 +983,7 @@ local function CreateWarningFrame()
     if warningFrame then return warningFrame end
 
     local f = CreateFrame("Frame", "EHTweaks_WarningFrame", UIParent)
-    f:SetSize(460, 120)
+    f:SetSize(460, 170)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
     f:SetFrameStrata("HIGH")
     f:Hide()
@@ -1016,7 +1016,7 @@ local function CreateWarningFrame()
 
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOP", 0, -6)
-    title:SetText("|cffFF4444Locked Echo Warning|r")
+    title:SetText("Locked Echo Warning")
     f.title = title
 
     local message = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
@@ -1034,32 +1034,72 @@ local function CheckLockedEchoes()
     if not ProjectEbonhold or not ProjectEbonhold.PerkService then return end
 
     local lockedPerks = ProjectEbonhold.PerkService.GetLockedPerks()
+    local grantedPerks = ProjectEbonhold.PerkService.GetGrantedPerks()
+
+    -- Calculate Locked Echoes
+    local lockedCount = 0
+    local echoNames = {}
+    if lockedPerks and type(lockedPerks) == "table" then
+        for _, val in pairs(lockedPerks) do
+            lockedCount = lockedCount + 1
+            
+            local name = "Unknown Echo"
+            if type(val) == "number" then
+                local spellName = GetSpellInfo(val)
+                if spellName then
+                    name = spellName
+                else
+                    name = "ID: " .. val
+                end
+            elseif type(val) == "string" then
+                name = val
+            elseif type(val) == "table" then
+                if val.name then
+                    name = val.name
+                elseif val.spellId then
+                     local spellName = GetSpellInfo(val.spellId)
+                     if spellName then name = spellName else name = "SpellID: " .. val.spellId end
+                elseif val.id then
+                     local spellName = GetSpellInfo(val.id)
+                     if spellName then name = spellName else name = "ID: " .. val.id end
+                else
+                     name = "Unknown Echo (Data Error)" 
+                end
+            end
+            
+            table.insert(echoNames, name)
+        end
+    end
+    local hasLocked = lockedCount > 0
+
+    -- Calculate Granted Echoes (Active)
+    local activeCount = 0
+    if grantedPerks and type(grantedPerks) == "table" then
+         for _, _ in pairs(grantedPerks) do
+             activeCount = activeCount + 1
+         end
+    end
+    local hasAnyEcho = activeCount > 0
 
     local frame = CreateWarningFrame()
 
-    if not lockedPerks or (type(lockedPerks) == "table" and next(lockedPerks) == nil) then
-        -- No locked echo
+    if hasLocked then
+        -- Has locked echo
+        local namesList = table.concat(echoNames, ", ")
+
+        frame.message:SetText("|cff00FF00Locked Echo Detected|r\n\n|cffFFFFFFYou will keep: |cff00FF00" .. namesList .. "|r\n\nVerify this is the echo you want to keep.|r")
+        frame:Show()
+        EHTweaks_Log("Death Check: Found locked echo(s): " .. namesList)
+        
+    elseif hasAnyEcho then
+        -- Has echoes but NONE are locked (Risk of losing them)
         frame.message:SetText("|cffFFFF00You don't have a Locked Echo!|r\n\n|cffFFFFFFAssign a Permanent Echo before respawning\nor you will lose all your echoes.|r")
         frame:Show()
-        EHTweaks_Log("Death Check: No locked echo found")
+        EHTweaks_Log("Death Check: No locked echo found (but has active echoes)")
+        
     else
-        -- Has locked echo
-        local echoCount = 0
-        local echoNames = {}
-
-        if type(lockedPerks) == "table" then
-            for spellName, _ in pairs(lockedPerks) do
-                echoCount = echoCount + 1
-                table.insert(echoNames, spellName)
-            end
-        end
-
-        if echoCount > 0 then
-            local namesList = table.concat(echoNames, ", ")
-            frame.message:SetText("|cff00FF00Locked Echo Detected|r\n\n|cffFFFFFFYou will keep: |cff00FF00" .. namesList .. "|r\n\nVerify this is the echo you want to keep.|r")
-            frame:Show()
-            EHTweaks_Log("Death Check: Found locked echo(s): " .. namesList)
-        end
+        -- Has NO echoes at all (Do nothing)
+        EHTweaks_Log("Death Check: No echoes active")
     end
 end
 
@@ -1165,3 +1205,10 @@ eventFrame:SetScript("OnEvent", function(self, event)
         end)
     end
 end)
+
+SLASH_EHTWARNING1 = '/ehtwarning'
+SlashCmdList['EHTWARNING'] = function()
+    local f = CreateWarningFrame()
+    f.message:SetText('|cff00FF00Locked Echo Detected|r\n\n|cffFFFFFFYou will keep: |cff00FF00Test Echo, Another Echo|r\n\nVerify this is the echo you want to keep.|r')
+    f:Show()
+end
