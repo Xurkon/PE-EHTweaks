@@ -983,27 +983,45 @@ local function CreateWarningFrame()
     if warningFrame then return warningFrame end
 
     local f = CreateFrame("Frame", "EHTweaks_WarningFrame", UIParent)
-    f:SetSize(600, 120)
+    f:SetSize(460, 120)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
     f:SetFrameStrata("HIGH")
     f:Hide()
+    f:EnableMouse(true)
+    f:SetMovable(true)
+    f:RegisterForDrag("LeftButton")
+    f:SetScript("OnDragStart", f.StartMoving)
+    f:SetScript("OnDragStop", f.StopMovingOrSizing)
 
     f:SetBackdrop({
-        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-        tile = true, tileSize = 32, edgeSize = 32,
-        insets = {left = 8, right = 8, top = 8, bottom = 8}
+        bgFile = "Interface\\Buttons\\WHITE8X8",
+        edgeFile = "Interface\\Buttons\\WHITE8X8",
+        tile = false, tileSize = 0, edgeSize = 1,
+        insets = {left = 0, right = 0, top = 0, bottom = 0},
     })
-    f:SetBackdropColor(0, 0, 0, 0.9)
+    f:SetBackdropColor(0.1, 0.1, 0.1, 0.95)
+    f:SetBackdropBorderColor(0, 0, 0, 1)
 
-    local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-    title:SetPoint("TOP", 0, -15)
+    local titleBg = f:CreateTexture(nil, "ARTWORK")
+    titleBg:SetTexture("Interface\\Buttons\\WHITE8X8")
+    titleBg:SetVertexColor(0.2, 0.2, 0.2, 1)
+    titleBg:SetHeight(24)
+    titleBg:SetPoint("TOPLEFT", 1, -1)
+    titleBg:SetPoint("TOPRIGHT", -1, -1)
+
+    local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
+    close:SetPoint("TOPRIGHT", 0, 0)
+    close:SetSize(24, 24)
+    close:SetScript("OnClick", function() f:Hide() end)
+
+    local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    title:SetPoint("TOP", 0, -6)
     title:SetText("|cffFF4444Locked Echo Warning|r")
     f.title = title
 
-    local message = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    message:SetPoint("TOP", title, "BOTTOM", 0, -10)
-    message:SetWidth(550)
+    local message = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    message:SetPoint("TOP", titleBg, "BOTTOM", 0, -15)
+    message:SetWidth(440)
     message:SetJustifyH("CENTER")
     f.message = message
 
