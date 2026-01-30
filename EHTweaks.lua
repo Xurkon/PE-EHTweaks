@@ -28,7 +28,8 @@ local DEFAULTS = {
     runFramePos = nil,
     offeredOptionalDB = nil,
     minimapButtonAngle = 200, -- Default position in degrees
-    minimapButtonHidden = false
+    minimapButtonHidden = false,
+    enableLockedEchoWarning = true
 }
 
 -- --- State ---
