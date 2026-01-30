@@ -951,7 +951,7 @@ local function CreateMinimapButton()
     return minimapButton
 end
 
-local function ShowMinimapButton()
+function EHTweaks_ShowMinimapButton()
     if not minimapButton then
         CreateMinimapButton()
     else
@@ -963,7 +963,7 @@ local function ShowMinimapButton()
     end
 end
 
-local function HideMinimapButton()
+function EHTweaks_HideMinimapButton()
     if minimapButton then
         minimapButton:Hide()
     end
@@ -1129,7 +1129,7 @@ eventFrame:SetScript("OnEvent", function(self, event)
        
         C_Timer.After(1, function()
             if EHTweaksDB and not EHTweaksDB.minimapButtonHidden then
-                ShowMinimapButton()
+                EHTweaks_ShowMinimapButton()
             end
         end)
         

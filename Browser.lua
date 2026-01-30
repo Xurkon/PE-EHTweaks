@@ -888,9 +888,9 @@ local function CreateBrowserFrame()
         if EHTweaksDB then
             EHTweaksDB.minimapButtonHidden = not self:GetChecked()
             if EHTweaksDB.minimapButtonHidden then
-                HideMinimapButton()
+                if EHTweaks_HideMinimapButton then EHTweaks_HideMinimapButton() end
             else
-                ShowMinimapButton()
+                if EHTweaks_ShowMinimapButton then EHTweaks_ShowMinimapButton() end
             end
         end
     end)
