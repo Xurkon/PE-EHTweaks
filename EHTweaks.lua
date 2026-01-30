@@ -984,7 +984,7 @@ local function CreateWarningFrame()
 
     local f = CreateFrame("Frame", "EHTweaks_WarningFrame", UIParent)
     f:SetSize(460, 170)
-    f:SetPoint("CENTER", UIParent, "CENTER", 0, 150)
+    f:SetPoint("CENTER", UIParent, "CENTER", 0, 300)
     f:SetFrameStrata("HIGH")
     f:Hide()
     f:EnableMouse(true)
