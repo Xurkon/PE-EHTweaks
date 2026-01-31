@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-v0.6.2-blue.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-v1.1-blue.svg?style=for-the-badge)
 ![Downloads](https://img.shields.io/github/downloads/Xurkon/PE-EHTweaks/total?style=for-the-badge&color=e67e22)
 [![Documentation](https://img.shields.io/badge/Documentation-View%20Docs-58a6ff?style=for-the-badge)](https://xurkon.github.io/PE-EHTweaks/)
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/Xurkon)
