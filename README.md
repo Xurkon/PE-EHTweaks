@@ -1,5 +1,17 @@
 # EHTweaks
 
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-v0.6.2-blue.svg?style=for-the-badge)
+![Downloads](https://img.shields.io/github/downloads/Xurkon/PE-EHTweaks/total?style=for-the-badge&color=e67e22)
+![License](https://img.shields.io/github/license/Xurkon/PE-EHTweaks?style=for-the-badge&color=2980b9)
+![Game Version](https://img.shields.io/badge/GAME-3.3.5a-blue?style=for-the-badge&logo=worldofwarcraft&logoColor=white)
+
+[⬇ **Download Latest**](https://github.com/Xurkon/PE-EHTweaks/releases/latest) &nbsp;&nbsp;•&nbsp;&nbsp; [📂 **View Source**](https://github.com/Xurkon/PE-EHTweaks)
+
+</div>
+
+
 **EHTweaks** is a collection of UI enhancements and quality-of-life improvements designed specifically for the Project Ebonhold custom character progression system. 
 
 It extends the default Project Ebonhold interface with searching, filtering, and browsing capabilities to help you plan and manage your classless builds more effectively.
