@@ -4,10 +4,14 @@
 
 ![Version](https://img.shields.io/badge/version-v0.6.2-blue.svg?style=for-the-badge)
 ![Downloads](https://img.shields.io/github/downloads/Xurkon/PE-EHTweaks/total?style=for-the-badge&color=e67e22)
+[![Documentation](https://img.shields.io/badge/Documentation-View%20Docs-58a6ff?style=for-the-badge)](https://xurkon.github.io/PE-EHTweaks/)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/Xurkon)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.me/Xurkon)
 ![License](https://img.shields.io/github/license/Xurkon/PE-EHTweaks?style=for-the-badge&color=2980b9)
-![Game Version](https://img.shields.io/badge/GAME-3.3.5a-blue?style=for-the-badge&logo=worldofwarcraft&logoColor=white)
+![Lua](https://img.shields.io/badge/LUA-5.1-blue?style=for-the-badge&logo=lua&logoColor=white)
+![Platform](https://img.shields.io/badge/PLATFORM-WOW_3.3.5a-blue?style=for-the-badge&logo=worldofwarcraft&logoColor=white)
 
-[⬇ **Download Latest**](https://github.com/Xurkon/PE-EHTweaks/releases/latest) &nbsp;&nbsp;•&nbsp;&nbsp; [📂 **View Source**](https://github.com/Xurkon/PE-EHTweaks)
+[⬇ **Download Latest**](https://github.com/Xurkon/PE-EHTweaks/releases/latest) &nbsp;&nbsp;•&nbsp;&nbsp; [📂 **View Source**](https://github.com/Xurkon/PE-EHTweaks) &nbsp;&nbsp;•&nbsp;&nbsp; [📖 **Read Documentation**](https://xurkon.github.io/PE-EHTweaks/)
 
 </div>
 
